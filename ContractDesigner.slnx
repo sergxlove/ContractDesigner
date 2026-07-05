@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ContractDesigner.Core/ContractDesigner.Core.csproj" />
+  <Project Path="ContractDesigner.Web/ContractDesigner.Web.csproj" />
+</Solution>
