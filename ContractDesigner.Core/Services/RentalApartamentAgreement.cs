@@ -3,6 +3,7 @@ using ContractDesigner.Core.Models;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using System.Text;
 
 namespace ContractDesigner.Core.Services
 {
@@ -30,6 +31,7 @@ namespace ContractDesigner.Core.Services
                         .Column(column =>
                         {
                             GenerateItem1(column, options);
+                            GenerateItem2(column, options);
                         });
 
                     page.Footer()
@@ -98,6 +100,7 @@ namespace ContractDesigner.Core.Services
                 text.Span($"по адресу: {options.ApartamentAddress} общей площадью {options.ApartamentSquare} кв.м. ");
                 text.Span("(в дальнейшем именуется «Жилое помещение»). Право собственности Арендодателя ");
                 text.Span($"на Жилое помещение подтверждается {options.OwnershipDocument}.");
+                text.EmptyLine();
             });
 
             column.Item().Text(text =>
@@ -107,7 +110,135 @@ namespace ContractDesigner.Core.Services
                     " пользованию Жилым помещением. Если на момент сдачи Жилого помещения имеются другие" +
                     " собственники квартиры, то Арендодатель получил от них согласие на сдачу этого Жилого" +
                     " помещения по настоящему Договору.");
+                text.EmptyLine();
             });
+
+            column.Item().Text(text =>
+            {
+                text.Span("2.3 Лица, которые могут проживать в Жилом помещении с арендатором (ФИО," +
+                    " серия и номер паспорта каждого человека):    ");
+                if (options.PeoplesLives.Count == 0)
+                    text.Span("отсутствуют").Underline();
+                else
+                {
+                    StringBuilder sb = new();
+                    foreach (People p in options.PeoplesLives)
+                    {
+                        sb.Append($"{p.FullName}  {p.PassportData}  ;  ");
+                    }
+                    text.Span($"{sb}").Underline();
+                }
+                text.Span("а также ");
+                text.Span($"   {options.QuantityChildren}   ").Underline();
+                text.Span("детей.");
+                text.EmptyLine();
+            });
+
+            column.Item().Text(text =>
+            {
+                text.Span("2.4 Проживание в Жилом помещении иных лиц, осуществляется только на основании " +
+                    "письменного соглашения Арендодателя.");
+                text.EmptyLine();
+            });
+
+            column.Item().Text(text =>
+            {
+                text.Span("2.5 Нахождение в жилом помещении животных ");
+                if(options.IsCanAnimals)
+                {
+                    text.Span("запрещено/");
+                    text.Span("разрешено").Underline();
+                    text.Span(" для следующих животных: ");
+                    text.Span($"{options.TypeAnimal}").Underline();
+                    text.EmptyLine();
+                }
+                else
+                {
+                    text.Span("запрещено/").Underline();
+                    text.Span("разрешено.");
+                }
+                text.EmptyLine();
+            });
+        }
+
+        private void GenerateItem3(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(10).Text("3. Срок действия договора и досрочное расторжение")
+                .FontSize(12).Bold();
+
+            column.Item().Text(text =>
+            {
+                text.Span("3.1 Срок действия договора: ");
+                text.Span($"  {options.QuantityMonthAgreement}  ").Underline(); 
+                text.Span(" месяцев начиная с «");
+                text.Span($"{options.DateStartAgreement.DayNumber}").Underline(); 
+                text.Span("» ");
+                text.Span($"{options.DateStartAgreement.Month}").Underline(); 
+                text.Span($" {options.DateStartAgreement.Year}").Underline(); 
+                text.Span(" г.");
+                text.EmptyLine();
+            });
+
+            column.Item().Text("(дата должна совпадать с датой в Акте передачи Жилого помещения" +
+                " (Приложение №1))");
+
+            column.Item().Text(text =>
+            {
+                text.EmptyLine();
+                text.Span("3.2 Жилое помещение считается переданным Арендодателем Арендатору в день " +
+                    "подписания Акта передачи Жилого помещения (Приложение №1).");
+                text.EmptyLine();
+            });
+
+            column.Item().Text(text =>
+            {
+                text.Span("3.3 Вместе с Жилым помещением Арендатору передается Имущество в соответствии с" +
+                    " описью в Приложении №1.");
+                text.EmptyLine();
+            });
+
+            column.Item().Text(text =>
+            {
+                text.Span("3.4 Не позднее чем за ");
+                text.Span($"  {options.QuantityMonthBeforeOffer}  ").Underline(); 
+                text.Span(" месяц(а) до истечения срока Договора Арендодатель должен предложить" +
+                    " Арендатору заключить договор на тех же или иных условиях либо предупредить" +
+                    " Арендатора об отказе от продления договора. Если Арендодатель не выполнил этой" +
+                    " обязанности, а Арендатор не отказался от продления договора, договор считается" +
+                    " продленным на тех же условиях и на тот же срок.");
+                text.EmptyLine();
+            });
+
+            column.Item().Text(text =>
+            {
+                text.Span("3.5. Стороны вправе расторгнуть договор по взаимному согласию, " +
+                    "а также по инициативе любой из Сторон с предупреждением другой Стороны за ");
+                text.Span($"  {options.QuantityDayWarningCancel}  ").Underline();
+                text.Span(" дней до момента расторжения Договора.");
+                text.EmptyLine();
+            });
+
+            column.Item().Text(text =>
+            {
+                text.Span("3.6 В случае не продления или досрочного прекращения Договора Арендатор " +
+                    "обязуется освободить Жилое помещение и передать его Арендодателю по Акту возврату" +
+                    " Жилого помещения (Приложение № 2 к Договору) не позднее дня не продления или " +
+                    "досрочного прекращения Договора.");
+                text.EmptyLine();
+            });
+
+            column.Item().PaddingVertical(2).Text(text =>
+            {
+                text.Span("3.7 В случае нарушения сроков освобождения и возврата Арендодателю в" +
+                    " пользование Жилого помещения, установленных этим Договором, Арендатор уплачивает" +
+                    " Арендодателю неустойку в размере ");
+                text.Span($" {options.Compensation} ").Underline(); 
+                text.Span(" рублей за каждый дополнительный день проживания в Жилом помещении, то есть" +
+                    " за каждый день нарушения сроков освобождения и возврата Арендодателю в пользование " +
+                    "Жилого помещения.");
+                text.EmptyLine();
+            });
+
         }
     }
 }
