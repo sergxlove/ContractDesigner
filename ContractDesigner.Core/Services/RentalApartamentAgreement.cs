@@ -33,6 +33,13 @@ namespace ContractDesigner.Core.Services
                             GenerateItem1(column, options);
                             GenerateItem2(column, options);
                             GenerateItem3(column, options);
+                            GenerateItem4(column, options);
+                            GenerateItem5(column, options);
+                            GenerateItem6(column, options);
+                            GenerateItem7(column, options);
+                            GenerateItem8(column, options);
+                            GenerateItem9(column, options);
+                            GenerateItem10(column, options);
                         });
 
                     page.Footer()
@@ -309,6 +316,211 @@ namespace ContractDesigner.Core.Services
             {
                 text.Span($"4.{currrentItem} Стороны самостоятельно договариваются о способе оплаты за " +
                     $"Жилое помещение и комунальных услуг");
+                text.EmptyLine();
+            });
+        }
+
+        private void GenerateItem5(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(10).Text("5. Обеспечительный платеж")
+               .FontSize(12).Bold();
+            column.Item().Text(text =>
+            {
+                text.Span("5.1 На момент подписания Договора в качестве обеспечительного платежа внессена сумма" +
+                    " в размере ");
+                text.Span($"{options.PaymentZl}").Underline();
+                text.Span(" рублей");
+                text.EmptyLine();
+            });
+            column.Item().Text(text =>
+            {
+                text.Span("5.2 В случае причинения вреда имуществу Арендодателя по вине Арендатора Арендодатель" +
+                    " вправе удержать сумму ущерба из обеспечительного платежа, о чем должен уведомить Арендодатора.");
+                text.EmptyLine();
+            });
+            column.Item().Text(text =>
+            {
+                text.Span("5.3 Арендатор обязан незамедлительно сообщеить Арендодателю об ущербе имуществу, " +
+                    "а также компенсировать ему ущерб, который отдельно или в совокупности с другими фактами" +
+                    " нанесения ущерба имуществу составляет больше, чем обеспечительный платеж (п. 5.1 " +
+                    "настоящего договора).");
+                text.EmptyLine();
+            });
+            column.Item().Text(text =>
+            {
+                text.Span("5.4 Арендодатель обязуется вернуть сумму обеспечительного платежа по истечении " +
+                    "срока найма при исполнении Арендатором своих обязательств по Договору, в том числе " +
+                    "сохранности имущества Арендодателя. Обеспечительный платеж не засчитывается в счет " +
+                    "арендной платы за последний месяци возвращается после полной оплаты всех месяцев.");
+                text.EmptyLine();
+            });
+        }
+
+        private void GenerateItem6(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(10).Text("6. Права и обязанности сторон").FontSize(12).Bold();
+            column.Item().PaddingVertical(2).Text("6.1 Арендодатель обязуется:");
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Предоставить Арендатору Жилое помещение в состоянии, пригодном для проживания. Обеспечить беспрепятственное пользование Жилым помещением на условиях договора.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Письменно уведомить Арендатора о правах третьих лиц на передаваемое в наем (аренду) Жилое помещение в случае возникновения таких прав.");
+            });
+
+            column.Item().PaddingVertical(2).Text("6.2 Арендатор обязуется:");
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Использовать Жилое помещение исключительно в целях проживания и не сдавать помещение в субаренду/поднаем без согласия Арендодателя.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Использовать Жилое помещение только для проживания лиц, указанных в Договоре.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Обеспечить сохранность Жилого помещения и поддерживать его в надлежащем состоянии.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Вносить плату за пользование Жилым помещением и коммунальные услуги в размере, порядке и сроках, установленных Договором.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• При пользовании Жилого помещения соблюдать требования законодательства о пожарной безопасности и об охране окружающей среды и не нарушать покой соседей.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Обеспечивать текущий ремонт квартиры, если ущерб был по вине Арендатора. Ремонт и замена сантехники, бытовой техники, электропроводки, вышедших из строя по причине естественного износа, производится за счет Арендодателя в течении ");
+                text.Span("__________").Underline();
+                text.Span(" дней с момента заявки Арендатора.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Обеспечивать доступ в жилое Помещение Арендодателю для проверки состояния Жилого Помещения в случае уведомления Арендодателем за ");
+                text.Span("__________").Underline();
+                text.Span(" календарных дня(ей) до даты посещения Жилого помещения.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Перед передачей помещения Арендодателю по Акту приема-передачи Арендатор обязан провести уборку (клининг) Жилого помещения.");
+            });
+
+            column.Item().PaddingVertical(2).Text("6.3 Арендодатель вправе:");
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• В присутствии Арендатора осуществлять проверку сохранности, состояния Жилого помещения. Наймодатель должен заранее (за срок указанный в п. 6.2) предупредить Арендатора о намерении осуществить проверку Жилого помещения.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• В любое время получать доступ к Жилому помещению в случае аварии, пожара, затопления, в иных случаях, угрожающих ущербом Жилому помещению.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Прекратить право Арендатора владеть и пользоваться Жилым помещением на основании и в соответствии с пунктов 3.6 Настоящего Договора.");
+            });
+
+            column.Item().PaddingVertical(2).Text("6.4 Арендатор вправе:");
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Производить переустройство, перепланировку, реконструкцию и переоборудование или улучшение Жилого помещения только с письменного согласия Арендодателя.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Требовать устранения неисправностей, если они возникли не по вине Арендатора;");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• В случае необходимости и с предварительным уведомлением Арендодателя, инициировать пересмотр условий договора.");
+            });
+
+            column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
+            {
+                text.Span("• Прекратить проживание и пользование Жилым помещением на основании и в соответствии с пунктов 3.6 Настоящего Договора.");
+            });
+        }
+
+        private void GenerateItem7(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(10).Text("7. Ответственность сторон")
+               .FontSize(12).Bold();
+            column.Item().Text(text =>
+            {
+                text.Span("7.1 За неисполнение условий настоящего Договора стороны несут ответственность " +
+                    "в соответствии с действующим законодательством РФ и условиями настоящего Договора.");
+                text.EmptyLine();
+                text.Span("7.2 В случае неисполнения или ненадлежащего исполнения своих обязательств " +
+                    "по настоящему Договору каждая сторона обязана возместить другой стороне причиненные убытки");
+                text.EmptyLine();
+                text.Span("7.3 В случае если в связи с действиями Арендатора органы власти или иные третьи " +
+                    "лица предъявят Арендодателю претензии/исковыые требования, либо в отношении Арендодателя " +
+                    "будут наложены штрафные санкции Арендатор обязан: исправить допущенные нарушения, " +
+                    "содействовать в урегулировании отношений с соответствующими органами/третьими лицами и " +
+                    "уплатить указанные штрафы");
+                text.EmptyLine();
+            });
+        }
+
+        private void GenerateItem8(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(10).Text("8. Порядок разрешения споров")
+               .FontSize(12).Bold();
+            column.Item().Text(text =>
+            {
+                text.Span("8.1 Все споры и разногласия, возникающие в связи с настоящим договором, стороны " +
+                    "обязуются урегулировать путем переговоров. В случае невозможности достижения согласия " +
+                    "путем переговоров, спор передается на рассмотрение в судебном порядке в соответствии " +
+                    "с законодательством РФ");
+                text.EmptyLine();
+            });
+        }
+
+        private void GenerateItem9(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(10).Text("9. Прочие положения договора")
+              .FontSize(12).Bold();
+            column.Item().Text(text =>
+            {
+                text.Span("9.1 Настоящий договор гражданским законодательством Российской федерации и " +
+                    "толкуется в соответствии с ним. Во всем, что не урегулировано настоящим Договором, " +
+                    "стороны руководствуются законодательством Российской Федерации.");
+                text.EmptyLine();
+                text.Span("9.2 Стороны также оговаривают, что принимают Жилое помещение в соответствии с актом " +
+                    "(Приложение 1), являющимся неотъемлимой частью настоящего договора. Стороны принимают " +
+                    "к сведению показания счетчиков и размер задолженности за коммунальные услуги или иные " +
+                    "задолженности, связанные с использованием Жилого помещения. ");
+                text.EmptyLine();
+            });
+        }
+
+        private void GenerateItem10(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(10).Text("9. Прочие положения договора")
+              .FontSize(12).Bold();
+            column.Item().Text(text =>
+            {
+                text.Span("10.1 Документ составлен в ");
+                text.Span($"   {options.CountExample}   ").Underline();
+                text.Span("экземплярах. Все экземпляры имеют равную юридическую силу.");
+                text.EmptyLine();
+                text.Span("10.2 Договор вступает в силу с момента подписания сторонами");
                 text.EmptyLine();
             });
         }

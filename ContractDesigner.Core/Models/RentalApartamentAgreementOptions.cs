@@ -21,9 +21,11 @@
         public DateOnly DateStartAgreement { get; set; }
         public int QuantityMonthBeforeOffer { get; set; } = 0;
         public int QuantityDayWarningCancel { get; set; } = 0; 
-        public int Compensation {  get; set; } = 0;
-        public int PaymentMonth {  get; set; } = 0;
-        public bool IsHaveCom { get; set;} = false;
+        public int Compensation { get; set; } = 0;
+        public int PaymentMonth { get; set; } = 0;
+        public bool IsHaveCom { get; set; } = false;
         public List<string> ServiceCom { get; set; } = [];
+        public int PaymentZl { get; set; } = 0;
+        public int CountExample { get; set; } = 0;
     }
 }
