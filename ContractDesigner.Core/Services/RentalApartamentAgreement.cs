@@ -32,6 +32,7 @@ namespace ContractDesigner.Core.Services
                         {
                             GenerateItem1(column, options);
                             GenerateItem2(column, options);
+                            GenerateItem3(column, options);
                         });
 
                     page.Footer()
@@ -227,7 +228,7 @@ namespace ContractDesigner.Core.Services
                 text.EmptyLine();
             });
 
-            column.Item().PaddingVertical(2).Text(text =>
+            column.Item().Text(text =>
             {
                 text.Span("3.7 В случае нарушения сроков освобождения и возврата Арендодателю в" +
                     " пользование Жилого помещения, установленных этим Договором, Арендатор уплачивает" +
@@ -238,7 +239,78 @@ namespace ContractDesigner.Core.Services
                     "Жилого помещения.");
                 text.EmptyLine();
             });
+        }
 
+        private void GenerateItem4(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(10).Text("4. Платежи по договору (Плата за жилое" +
+                " помещение и комунальные услуги)")
+               .FontSize(12).Bold();
+            column.Item().Text(text =>
+            {
+                text.Span("4.1 Размер платы за жилое помещение устанавливается в размере ");
+                text.Span($"{options.PaymentMonth}").Underline();
+                text.Span(" рублей в месяц.");
+                text.EmptyLine();
+            });
+
+            column.Item().Text(text =>
+            {
+                text.Span("4.2 Плата за жилое помещение выплачивается авансом ежемесячно до числа месяца, " +
+                    "соответствующего дате вселения. Если в месяц платежа такое число отсутствует, то " +
+                    "оплата производится до последнего числа этого месяца");
+                text.EmptyLine();
+            });
+
+            int currrentItem = 4;
+            column.Item().Text(text =>
+            {
+                text.Span("4.3 Стоимость комунальных услуг в стоимость платы за жилое помещение  ");
+                if (options.IsHaveCom)
+                {
+                    text.Span("входит").Underline();
+                    text.Span("/не входит");
+                }
+                else
+                {
+                    text.Span("входит");
+                    text.Span("/не входит").Underline();
+                }
+                text.EmptyLine();
+            });
+
+            if(!options.IsHaveCom)
+            {
+                column.Item().Text(text => 
+                {
+                    text.Span($"4.{currrentItem} В стоимость комунальных услуг, которые Арендатор оплачивает" +
+                        $" ежемесячно за свой счет, входят: ");
+                    StringBuilder sb = new();
+                    foreach(string s in options.ServiceCom)
+                    {
+                        sb.Append(s);
+                        sb.Append(' ');
+                    }
+                    text.Span($"{sb}");
+                    text.EmptyLine();
+                });
+                currrentItem++;
+            }
+
+            column.Item().Text(text =>
+            {
+                text.Span($"4.{currrentItem} Арендатор обязан самостоятельно принять меры для уведомления " +
+                    $"Арендодателя о показанях счетчиков, сумме коммунальных платежей к оплате.");
+                text.EmptyLine();
+            });
+            currrentItem++;
+
+            column.Item().Text(text =>
+            {
+                text.Span($"4.{currrentItem} Стороны самостоятельно договариваются о способе оплаты за " +
+                    $"Жилое помещение и комунальных услуг");
+                text.EmptyLine();
+            });
         }
     }
 }

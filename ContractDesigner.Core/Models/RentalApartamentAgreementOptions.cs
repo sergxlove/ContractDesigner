@@ -16,11 +16,14 @@
         public List<People> PeoplesLives { get; set; } = []; 
         public int QuantityChildren { get; set; } = 0;
         public string TypeAnimal { get; set; } = string.Empty;
-        public bool IsCanAnimals { get; set; }
+        public bool IsCanAnimals { get; set; } = false;
         public int QuantityMonthAgreement { get; set; } = 0;
         public DateOnly DateStartAgreement { get; set; }
         public int QuantityMonthBeforeOffer { get; set; } = 0;
         public int QuantityDayWarningCancel { get; set; } = 0; 
         public int Compensation {  get; set; } = 0;
+        public int PaymentMonth {  get; set; } = 0;
+        public bool IsHaveCom { get; set;} = false;
+        public List<string> ServiceCom { get; set; } = [];
     }
 }
