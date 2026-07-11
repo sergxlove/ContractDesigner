@@ -27,5 +27,7 @@
         public List<string> ServiceCom { get; set; } = [];
         public int PaymentZl { get; set; } = 0;
         public int CountExample { get; set; } = 0;
+        public int RepairDay { get; set; } = 0;
+        public int CheckDay { get; set; } = 0;
     }
 }
