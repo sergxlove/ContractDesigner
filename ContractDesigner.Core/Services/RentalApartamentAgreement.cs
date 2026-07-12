@@ -37,6 +37,8 @@ namespace ContractDesigner.Core.Services
                             GenerateItem9(column, options);
                             GenerateItem10(column, options);
                             GenerateItem11(column, options);
+                            GenerateApp1(column, options);
+                            GenerateApp2(column, options);
                         });
 
                     page.Footer()
@@ -671,6 +673,324 @@ namespace ContractDesigner.Core.Services
             {
                 text.Span("4. По договоренности Арендодателя и Арендатора Жилое помещение передается вместе с имуществом, ");
                 text.Span("то есть мебелью и бытовой техникой согласно приведенному перечню:");
+            });
+
+            column.Item().PaddingTop(10).Table(table =>
+            {
+                table.ColumnsDefinition(columns =>
+                {
+                    columns.RelativeColumn(1); 
+                    columns.RelativeColumn(5);  
+                    columns.RelativeColumn(2);
+                    columns.RelativeColumn(3); 
+                });
+
+                table.Cell()
+                    .Border(1)
+                    .BorderColor(Colors.Black)
+                    .Padding(5)
+                    .Text("№")
+                    .Bold()
+                    .AlignCenter();
+
+                table.Cell()
+                    .Border(1)
+                    .BorderColor(Colors.Black)
+                    .Padding(5)
+                    .Text("Наименование имущества")
+                    .Bold()
+                    .AlignCenter();
+
+                table.Cell()
+                    .Border(1)
+                    .BorderColor(Colors.Black)
+                    .Padding(5)
+                    .Text("Количество")
+                    .Bold()
+                    .AlignCenter();
+
+                table.Cell()
+                    .Border(1)
+                    .BorderColor(Colors.Black)
+                    .Padding(5)
+                    .Text("Состояние")
+                    .Bold()
+                    .AlignCenter();
+
+                if (options.Properties != null && options.Properties.Any())
+                {
+                    for (int i = 0; i < options.Properties.Count; i++)
+                    {
+                        var property = options.Properties[i];
+
+                        table.Cell()
+                            .Border(1)
+                            .BorderColor(Colors.Black)
+                            .Padding(5)
+                            .Text((i + 1).ToString())
+                            .AlignCenter();
+
+                        table.Cell()
+                            .Border(1)
+                            .BorderColor(Colors.Black)
+                            .Padding(5)
+                            .Text(property.Name);
+
+                        table.Cell()
+                            .Border(1)
+                            .BorderColor(Colors.Black)
+                            .Padding(5)
+                            .Text(property.Quantity.ToString())
+                            .AlignCenter();
+
+                        table.Cell()
+                            .Border(1)
+                            .BorderColor(Colors.Black)
+                            .Padding(5)
+                            .Text(property.State);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        table.Cell()
+                            .Border(1)
+                            .BorderColor(Colors.Black)
+                            .Padding(5)
+                            .Text((i + 1).ToString())
+                            .AlignCenter();
+
+                        table.Cell()
+                            .Border(1)
+                            .BorderColor(Colors.Black)
+                            .Padding(5)
+                            .Text("");
+
+                        table.Cell()
+                            .Border(1)
+                            .BorderColor(Colors.Black)
+                            .Padding(5)
+                            .Text("");
+
+                        table.Cell()
+                            .Border(1)
+                            .BorderColor(Colors.Black)
+                            .Padding(5)
+                            .Text("");
+                    }
+                }
+            });
+
+            column.Item().PaddingTop(10).Text(text =>
+            {
+                text.Span("5. Показание электросчетчика на день подписания настоящего Передаточного Акта составляют: ");
+                text.Span($"{options.ElectricityMeter}").Underline();
+                text.Span(" кВт/ч.");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("6. Показания водосчетчиков на день подписания настоящего Передаточного Акта составляют:");
+                text.EmptyLine();
+                text.Span($"{options.WaterMeter}").Underline();
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("7. Арендатор удовлетворен состоянием Жилого помещения и считает его пригодным для ");
+                text.Span("использования в целях и на условиях, установленных настоящим Договором.");
+            });
+
+            column.Item().PaddingTop(15).Text(text =>
+            {
+                text.Span("8. Данный акт передачи жилого помещения в найм (аренду) является неотъемлемой частью ");
+                text.Span("Договора, и заключен в ");
+                text.Span($"{options.CountExample}").Underline();
+                text.Span(" экземплярах для каждой из сторон.");
+            });
+
+            column.Item().Table(table =>
+            {
+                table.ColumnsDefinition(columns =>
+                {
+                    columns.RelativeColumn();
+                    columns.RelativeColumn();
+                });
+                table.Cell().Text("Арендодатель").Bold();
+                table.Cell().Text("Арендатор").Bold();
+
+                table.Cell().Text(text =>
+                {
+                    text.Span("Контактный телефон:");
+                    text.EmptyLine();
+                    text.Span("____________________").Underline();
+                });
+                table.Cell().Text(text =>
+                {
+                    text.Span("Контактный телефон:");
+                    text.EmptyLine();
+                    text.Span("____________________").Underline();
+                });
+
+                table.Cell().PaddingTop(5).Text("");
+                table.Cell().PaddingTop(5).Text("");
+
+                table.Cell().Text(text =>
+                {
+                    text.Span("________________");
+                    text.EmptyLine();
+                    text.Span($"{options.FullNameLandlord} / ");
+                    text.Span("__________").Underline();
+                    text.EmptyLine();
+                    text.Span("(фамилия и инициалы)");
+                    text.EmptyLine();
+                    text.Span("(подпись)");
+                });
+
+                table.Cell().Text(text =>
+                {
+                    text.Span("________________");
+                    text.EmptyLine();
+                    text.Span($"{options.FullNameTenant} / ");
+                    text.Span("__________").Underline();
+                    text.EmptyLine();
+                    text.Span("(фамилия и инициалы)");
+                    text.EmptyLine();
+                    text.Span("(подпись)");
+                });
+
+                column.Item().PageBreak();
+            });
+        }
+
+        private void GenerateApp2(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().Text(text =>
+            {
+                text.Span("Приложение № 2 к Договору найма от «");
+                text.Span($"{options.DateStartAgreement.Day}").Underline();
+                text.Span("» ");
+                text.Span($"{options.DateStartAgreement.Month}").Underline();
+                text.Span(" 20");
+                text.Span($"{options.DateStartAgreement.Year}").Underline();
+                text.Span("г.");
+            });
+
+            column.Item().PaddingTop(10).Text(text =>
+            {
+                text.Span("Акт возврата Жилого помещения из найма (аренды) от «");
+                text.Span($"{options.DateStartAgreement.Day}").Underline();
+                text.Span("» ");
+                text.Span($"{options.DateStartAgreement.Month}").Underline();
+                text.Span(" 20");
+                text.Span($"{options.DateStartAgreement.Year}").Underline();
+                text.Span("г.");
+            });
+
+            column.Item().PaddingTop(10).Text(text =>
+            {
+                text.Span("Наймодателем (Арендодателем):");
+                text.EmptyLine();
+                text.Span("    ");
+                text.Span($"{options.FullNameLandlord}").Underline();
+                text.Span(",");
+                text.EmptyLine();
+                text.Span("    паспорт ");
+                text.Span($"{options.PassportDataLandlord}").Underline();
+                text.Span(", зарегистрирован по адресу: ");
+                text.Span($"{options.AddressRegLandlord}").Underline();
+                text.Span(",");
+                text.EmptyLine();
+                text.Span("    в дальнейшем именуемый «Арендодатель»,");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("и");
+                text.EmptyLine();
+                text.Span("Нанимателем (Арендатором):");
+                text.EmptyLine();
+                text.Span("    ");
+                text.Span($"{options.FullNameTenant}").Underline();
+                text.Span(",");
+                text.EmptyLine();
+                text.Span("    паспорт ");
+                text.Span($"{options.PassportDataTenant}").Underline();
+                text.Span(", зарегистрирован по адресу: ");
+                text.Span($"{options.AddressRegTenant}").Underline();
+                text.Span(",");
+                text.EmptyLine();
+                text.Span("    в дальнейшем именуемый «Арендатор»,");
+            });
+
+            column.Item().PaddingTop(10).Text("Поскольку:");
+
+            column.Item().PaddingLeft(15).PaddingTop(5).Text(text =>
+            {
+                text.Span("1. В соответствии с Договором найма (аренды) Жилого помещения Арендодатель ранее передал, ");
+                text.Span("а Арендатор принял жилое помещение в виде квартиры, расположенной по адресу: ");
+                text.Span($"{options.ApartamentAddress}").Underline();
+                text.Span(" (далее «Жилое помещение»).");
+            });
+
+            column.Item().PaddingLeft(15).PaddingTop(5).Text(text =>
+            {
+                text.Span("2. Стороны имеют намерение зафиксировать фактический возврат Жилого помещения из найма ");
+                text.Span("(аренды) Арендодателю,");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("стороны заключили настоящий Акт возврата жилого помещения о нижеследующем:");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("1. Настоящим Арендодатель удостоверяет, что получил необходимый комплект ключей ");
+                text.Span("от Жилого помещения в количестве ");
+                text.Span($"{options.KeyCount}").Underline();
+                text.Span(" экземпляров.");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("2. Жилое помещение, передаваемое по акту возврата жилого помещения, находится в состоянии ");
+                text.Span("пригодном для проживания, а также соответствует санитарным, техническим и ");
+                text.Span("противопожарным требованиям.");
+            });
+
+            column.Item().PaddingTop(10).Text(text =>
+            {
+                text.Span("3. Настоящим стороны удостоверяют, что не имеют претензий друг к другу в связи с:");
+                text.EmptyLine();
+                text.Span("    • состоянием возвращаемого Жилого помещения");
+                text.EmptyLine();
+                text.Span("    • комплектацией, находящейся в Жилом помещении");
+                text.EmptyLine();
+                text.Span("    • расторжением Договора");
+                text.EmptyLine();
+                text.Span("кроме претензий, изложенных в тексте настоящего Акта ниже.");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("4. Претензии Арендодателя к состоянию Жилого помещения (прописать если есть или прочерк, ");
+                text.Span("если отсутствуют):");
+                text.EmptyLine();
+                text.Span("    ");
+                text.Span("_________________________________________________________________").Underline();
+                text.EmptyLine();
+                text.Span("    ");
+                text.Span("_________________________________________________________________").Underline();
+            });
+
+            column.Item().PaddingTop(10).Text(text =>
+            {
+                text.Span("5. Данный акт возврата жилого помещения из найма (аренды) является неотъемлемой частью ");
+                text.Span("Договора, и заключен в ");
+                text.Span("2").Underline();
+                text.Span(" экземплярах для каждой из сторон.");
             });
         }
     }
