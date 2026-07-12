@@ -30,5 +30,8 @@
         public int RepairDay { get; set; } = 0;
         public int CheckDay { get; set; } = 0;
         public int KeyCount { get; set; } = 0;
+        public List<PropertyAppartament> Properties { get; set; } = [];
+        public string ElectricityMeter { get; set; } = string.Empty;
+        public string WaterMeter { get; set; } = string.Empty;
     }
 }
