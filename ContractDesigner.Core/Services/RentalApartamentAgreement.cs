@@ -36,6 +36,7 @@ namespace ContractDesigner.Core.Services
                             GenerateItem8(column, options);
                             GenerateItem9(column, options);
                             GenerateItem10(column, options);
+                            GenerateItem11(column, options);
                         });
 
                     page.Footer()
@@ -513,6 +514,163 @@ namespace ContractDesigner.Core.Services
                 text.EmptyLine();
                 text.Span("10.2 Договор вступает в силу с момента подписания сторонами");
                 text.EmptyLine();
+            });
+        }
+
+        private void GenerateItem11(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().PaddingVertical(15).Text("11. Реквизиты и подписи сторон").FontSize(12).Bold();
+
+            column.Item().Table(table =>
+            {
+                table.ColumnsDefinition(columns =>
+                {
+                    columns.RelativeColumn();
+                    columns.RelativeColumn();
+                });
+                table.Cell().Text("Арендодатель").Bold();
+                table.Cell().Text("Арендатор").Bold();
+
+                table.Cell().Text(text =>
+                {
+                    text.Span("Контактный телефон:");
+                    text.EmptyLine();
+                    text.Span("____________________").Underline();
+                });
+                table.Cell().Text(text =>
+                {
+                    text.Span("Контактный телефон:");
+                    text.EmptyLine();
+                    text.Span("____________________").Underline();
+                });
+
+                table.Cell().PaddingTop(5).Text("");
+                table.Cell().PaddingTop(5).Text("");
+
+                table.Cell().Text(text =>
+                {
+                    text.Span("________________");
+                    text.EmptyLine();
+                    text.Span($"{options.FullNameLandlord} / ");
+                    text.Span("__________").Underline();
+                    text.EmptyLine();
+                    text.Span("(фамилия и инициалы)");
+                    text.EmptyLine();
+                    text.Span("(подпись)");
+                });
+
+                table.Cell().Text(text =>
+                {
+                    text.Span("________________");
+                    text.EmptyLine();
+                    text.Span($"{options.FullNameTenant} / ");
+                    text.Span("__________").Underline();
+                    text.EmptyLine();
+                    text.Span("(фамилия и инициалы)");
+                    text.EmptyLine();
+                    text.Span("(подпись)");
+                });
+
+                column.Item().PageBreak();
+            });
+        }
+
+        private void GenerateApp1(ColumnDescriptor column, RentalApartamentAgreementOptions options)
+        {
+            column.Item().Text(text =>
+            {
+                text.Span("Приложение № 1 к Договору найма (аренды) от «");
+                text.Span($"{options.DateStartAgreement.Day}").Underline();
+                text.Span("» ");
+                text.Span($"{options.DateStartAgreement.Month}").Underline();
+                text.Span(" 20");
+                text.Span($"{options.DateStartAgreement.Year}").Underline();
+                text.Span("г.");
+            });
+
+            column.Item().PaddingTop(10).Text(text =>
+            {
+                text.Span("Акт передачи Жилого помещения в найм (аренду) от «").Bold();
+                text.Span($"{options.DateStartAgreement.Day}").Underline().Bold();
+                text.Span("» ").Bold();
+                text.Span($"{options.DateStartAgreement.Month}").Underline().Bold();
+                text.Span(" 20").Bold();
+                text.Span($"{options.DateStartAgreement.Year}").Underline().Bold();
+                text.Span("г.").Bold();
+            });
+
+            column.Item().PaddingTop(10).Text(text =>
+            {
+                text.Span("Наймодателем (Арендодателем):");
+                text.EmptyLine();
+                text.Span("    ");
+                text.Span($"{options.FullNameLandlord}").Underline();
+                text.Span(",");
+                text.EmptyLine();
+                text.Span("    паспорт ");
+                text.Span($"{options.PassportDataLandlord}").Underline();
+                text.Span(", зарегистрирован по адресу:");
+                text.EmptyLine();
+                text.Span("    ");
+                text.Span($"{options.AddressRegLandlord}").Underline();
+                text.Span(",");
+                text.EmptyLine();
+                text.Span("    в дальнейшем именуемый «Арендодатель»,");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("и");
+                text.EmptyLine();
+                text.Span("Нанимателем (Арендатором):");
+                text.EmptyLine();
+                text.Span("    ");
+                text.Span($"{options.FullNameTenant}").Underline();
+                text.Span(",");
+                text.EmptyLine();
+                text.Span("    паспорт ");
+                text.Span($"{options.PassportDataTenant}").Underline();
+                text.Span(", зарегистрирован по адресу:");
+                text.EmptyLine();
+                text.Span("    ");
+                text.Span($"{options.AddressRegTenant}").Underline();
+                text.Span(",");
+                text.EmptyLine();
+                text.Span("    в дальнейшем именуемый «Арендатор»,");
+            });
+
+            column.Item().PaddingTop(5).Text("заключили настоящий Акт о нижеследующем:");
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Justify();
+                text.Span("1. В соответствии с Договором найма (аренды) Жилого помещения Арендодатель передал, ");
+                text.Span("а Арендатор принял жилое помещение в соответствии с Договором в виде квартиры, ");
+                text.Span($"расположенной по адресу: {options.ApartamentAddress} ");
+                text.Span("(далее «Жилое помещение»).");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Justify();
+                text.Span("2. Настоящим Арендатор удостоверяет, что получил комплект ключей от Жилого помещения ");
+                text.Span("и подъезда в количестве ");
+                text.Span($"{options.KeyCount}").Underline();
+                text.Span(" экземпляров.");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Justify();
+                text.Span("3. Жилое помещение, переданное по данному акту Арендатору, находится в состоянии пригодном ");
+                text.Span("для проживания, а также соответствует санитарным, техническим и противопожарным требованиям ");
+                text.Span("действующего законодательства.");
+            });
+
+            column.Item().PaddingTop(5).Text(text =>
+            {
+                text.Span("4. По договоренности Арендодателя и Арендатора Жилое помещение передается вместе с имуществом, ");
+                text.Span("то есть мебелью и бытовой техникой согласно приведенному перечню:");
             });
         }
     }
