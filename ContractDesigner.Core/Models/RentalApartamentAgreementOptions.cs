@@ -29,5 +29,6 @@
         public int CountExample { get; set; } = 0;
         public int RepairDay { get; set; } = 0;
         public int CheckDay { get; set; } = 0;
+        public int KeyCount { get; set; } = 0;
     }
 }
