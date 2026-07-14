@@ -1,0 +1,1119 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор договора аренды</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid #4a6cf7;
+            transition: border-color 0.3s;
+        }
+
+            .section.error {
+                border-left-color: #dc3545;
+            }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .section-title span {
+                background: #4a6cf7;
+                color: white;
+                border-radius: 50%;
+                width: 28px;
+                height: 28px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 5px;
+                color: #555;
+                font-size: 14px;
+            }
+
+                .form-group label .required {
+                    color: #dc3545;
+                    font-weight: 700;
+                    margin-left: 2px;
+                }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 10px 12px;
+                border: 2px solid #ddd;
+                border-radius: 6px;
+                font-size: 14px;
+                transition: border-color 0.3s, box-shadow 0.3s;
+            }
+
+                .form-group input:focus,
+                .form-group select:focus,
+                .form-group textarea:focus {
+                    outline: none;
+                    border-color: #4a6cf7;
+                    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+                }
+
+                .form-group input.error,
+                .form-group select.error,
+                .form-group textarea.error {
+                    border-color: #dc3545;
+                    background: #fff5f5;
+                }
+
+                    .form-group input.error:focus,
+                    .form-group select.error:focus,
+                    .form-group textarea.error:focus {
+                        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+                    }
+
+            .form-group .error-message {
+                display: none;
+                color: #dc3545;
+                font-size: 13px;
+                margin-top: 5px;
+            }
+
+                .form-group .error-message.active {
+                    display: block;
+                }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .checkbox-group input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+                cursor: pointer;
+                border-color: #ddd;
+            }
+
+            .checkbox-group label {
+                margin: 0;
+                cursor: pointer;
+            }
+
+        .array-input {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+            .array-input input {
+                flex: 1;
+                min-width: 150px;
+            }
+
+            .array-input .btn-add {
+                padding: 10px 20px;
+                background: #28a745;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background 0.3s;
+            }
+
+                .array-input .btn-add:hover {
+                    background: #218838;
+                }
+
+        .tag {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin: 4px;
+            font-size: 13px;
+        }
+
+            .tag .remove {
+                cursor: pointer;
+                margin-left: 6px;
+                color: #dc3545;
+                font-weight: bold;
+            }
+
+        .property-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
+            .property-item .form-group {
+                margin-bottom: 0;
+            }
+
+            .property-item .btn-remove {
+                background: #dc3545;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 12px;
+                cursor: pointer;
+                height: 38px;
+                transition: background 0.3s;
+            }
+
+                .property-item .btn-remove:hover {
+                    background: #c82333;
+                }
+
+        .btn-add-property {
+            width: 100%;
+            padding: 10px;
+            background: #e9ecef;
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+            .btn-add-property:hover {
+                background: #dee2e6;
+                border-color: #4a6cf7;
+                color: #4a6cf7;
+            }
+
+        .btn-generate {
+            width: 100%;
+            padding: 15px;
+            background: #4a6cf7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+            .btn-generate:hover {
+                background: #3651d4;
+            }
+
+            .btn-generate:disabled {
+                background: #adb5bd;
+                cursor: not-allowed;
+            }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+            .loading.active {
+                display: block;
+            }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4a6cf7;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Toast уведомления */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.3s ease-out;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+            .toast.error {
+                background: #dc3545;
+            }
+
+            .toast.success {
+                background: #28a745;
+            }
+
+            .toast.warning {
+                background: #ffc107;
+                color: #333;
+            }
+
+            .toast.info {
+                background: #4a6cf7;
+            }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast .toast-close {
+            float: right;
+            cursor: pointer;
+            margin-left: 15px;
+            font-weight: bold;
+            opacity: 0.8;
+        }
+
+            .toast .toast-close:hover {
+                opacity: 1;
+            }
+
+        /* Scroll to error */
+        .scroll-to-error {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Счетчик ошибок */
+        .error-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+            display: none;
+            z-index: 999;
+            cursor: pointer;
+        }
+
+            .error-badge.active {
+                display: block;
+                animation: bounceIn 0.5s ease-out;
+            }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row,
+            .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .property-item {
+                grid-template-columns: 1fr;
+            }
+
+                .property-item .btn-remove {
+                    height: 38px;
+                }
+
+            .toast {
+                min-width: auto;
+                max-width: 90vw;
+            }
+
+            .toast-container {
+                right: 10px;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <div class="error-badge" id="errorBadge" onclick="scrollToFirstError()">⚠️ <span id="errorCount">0</span> ошибок</div>
+
+    <div class="container">
+        <h1>📄 Генератор договора аренды</h1>
+
+        <form id="contractForm" novalidate>
+            <!-- Раздел 1: Арендодатель -->
+            <div class="section" id="section-landlord">
+                <div class="section-title"><span>1</span> Арендодатель</div>
+                <div class="form-group">
+                    <label>ФИО <span class="required">*</span></label>
+                    <input type="text" id="fullNameLandlord" required placeholder="Иванов Иван Иванович">
+                    <div class="error-message">Введите ФИО Арендодателя</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Паспортные данные <span class="required">*</span></label>
+                        <input type="text" id="passportDataLandlord" required placeholder="1234 567890">
+                        <div class="error-message">Введите паспортные данные</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Кем выдан <span class="required">*</span></label>
+                        <input type="text" id="issuedLandlord" required placeholder="ГУ МВД России по г. Москве">
+                        <div class="error-message">Укажите орган, выдавший паспорт</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Адрес регистрации <span class="required">*</span></label>
+                    <input type="text" id="addressRegLandlord" required placeholder="г. Москва, ул. Тверская, д. 10, кв. 5">
+                    <div class="error-message">Введите адрес регистрации</div>
+                </div>
+            </div>
+
+            <!-- Раздел 2: Арендатор -->
+            <div class="section" id="section-tenant">
+                <div class="section-title"><span>2</span> Арендатор</div>
+                <div class="form-group">
+                    <label>ФИО <span class="required">*</span></label>
+                    <input type="text" id="fullNameTenant" required placeholder="Петров Петр Петрович">
+                    <div class="error-message">Введите ФИО Арендатора</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Паспортные данные <span class="required">*</span></label>
+                        <input type="text" id="passportDataTenant" required placeholder="9876 543210">
+                        <div class="error-message">Введите паспортные данные</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Кем выдан <span class="required">*</span></label>
+                        <input type="text" id="issuedTenant" required placeholder="ГУ МВД России по г. Санкт-Петербург">
+                        <div class="error-message">Укажите орган, выдавший паспорт</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Адрес регистрации <span class="required">*</span></label>
+                    <input type="text" id="addressRegTenant" required placeholder="г. Санкт-Петербург, Невский пр., д. 20, кв. 15">
+                    <div class="error-message">Введите адрес регистрации</div>
+                </div>
+            </div>
+
+            <!-- Раздел 3: Жилое помещение -->
+            <div class="section" id="section-property">
+                <div class="section-title"><span>3</span> Жилое помещение</div>
+                <div class="form-group">
+                    <label>Адрес помещения <span class="required">*</span></label>
+                    <input type="text" id="apartamentAddress" required placeholder="г. Москва, ул. Арбат, д. 15, кв. 7">
+                    <div class="error-message">Введите адрес помещения</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Общая площадь (кв.м.) <span class="required">*</span></label>
+                        <input type="number" id="apartamentSquare" required step="0.1" placeholder="65.5">
+                        <div class="error-message">Введите площадь помещения</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Правоустанавливающий документ <span class="required">*</span></label>
+                        <input type="text" id="ownershipDocument" required placeholder="Выписка из ЕГРН № 77:01:0001234:567">
+                        <div class="error-message">Укажите правоустанавливающий документ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Раздел 4: Проживающие -->
+            <div class="section" id="section-people">
+                <div class="section-title"><span>4</span> Проживающие</div>
+                <div class="form-group">
+                    <label>Дополнительные жильцы (ФИО)</label>
+                    <div class="array-input">
+                        <input type="text" id="peopleInput" placeholder="Введите ФИО">
+                        <button type="button" class="btn-add" onclick="addPeople()">➕ Добавить</button>
+                    </div>
+                    <div id="peopleList" style="margin-top: 10px;"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Количество детей</label>
+                        <input type="number" id="quantityChildren" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Разрешены животные</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="isCanAnimals">
+                            <label for="isCanAnimals">Да</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="animalTypeGroup" style="display: none;">
+                    <label>Тип животного</label>
+                    <input type="text" id="typeAnimal" placeholder="Кошка, собака и т.д.">
+                </div>
+            </div>
+
+            <!-- Раздел 5: Сроки и платежи -->
+            <div class="section" id="section-terms">
+                <div class="section-title"><span>5</span> Сроки и платежи</div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Срок договора (месяцев) <span class="required">*</span></label>
+                        <input type="number" id="quantityMonthAgreement" required min="1" value="11">
+                        <div class="error-message">Укажите срок договора</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Дата начала <span class="required">*</span></label>
+                        <input type="date" id="dateStartAgreement" required>
+                        <div class="error-message">Выберите дату начала</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Сумма аренды (руб.) <span class="required">*</span></label>
+                        <input type="number" id="paymentMonth" required min="1" value="45000">
+                        <div class="error-message">Укажите сумму аренды</div>
+                    </div>
+                </div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Срок уведомления о продлении (мес.)</label>
+                        <input type="number" id="quantityMonthBeforeOffer" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Срок предупреждения о расторжении (дней)</label>
+                        <input type="number" id="quantityDayWarningCancel" value="14">
+                    </div>
+                    <div class="form-group">
+                        <label>Неустойка за день просрочки (руб.)</label>
+                        <input type="number" id="compensation" value="500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Раздел 6: Коммунальные услуги -->
+            <div class="section" id="section-utilities">
+                <div class="section-title"><span>6</span> Коммунальные услуги</div>
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="isHaveCom">
+                        <label for="isHaveCom">Коммунальные услуги включены в арендную плату</label>
+                    </div>
+                </div>
+                <div class="form-group" id="serviceComGroup">
+                    <label>Услуги, оплачиваемые Арендатором</label>
+                    <div class="array-input">
+                        <input type="text" id="serviceInput" placeholder="Например: электричество, вода">
+                        <button type="button" class="btn-add" onclick="addService()">➕ Добавить</button>
+                    </div>
+                    <div id="serviceList" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+
+            <!-- Раздел 7: Ремонт и проверка -->
+            <div class="section" id="section-maintenance">
+                <div class="section-title"><span>7</span> Ремонт и проверка</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Срок ремонта (дней)</label>
+                        <input type="number" id="repairDay" value="3">
+                    </div>
+                    <div class="form-group">
+                        <label>Срок уведомления о проверке (дней)</label>
+                        <input type="number" id="checkDay" value="3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Раздел 8: Приложение 1 (Акт передачи) -->
+            <div class="section" id="section-transfer">
+                <div class="section-title"><span>8</span> Акт передачи (Приложение №1)</div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Количество ключей</label>
+                        <input type="number" id="keyCount" value="2">
+                    </div>
+                    <div class="form-group">
+                        <label>Показания электросчетчика (кВт/ч)</label>
+                        <input type="text" id="electricityMeter" placeholder="1234.5">
+                    </div>
+                    <div class="form-group">
+                        <label>Показания водосчетчика (м³)</label>
+                        <input type="text" id="waterMeter" placeholder="45.2">
+                    </div>
+                </div>
+
+                <div style="margin-top:15px;">
+                    <label style="font-weight: 500; display: block; margin-bottom: 10px;">Опись имущества <span class="required">*</span></label>
+                    <div id="propertiesContainer">
+                        <div class="property-item" data-index="0">
+                            <div class="form-group">
+                                <label>Наименование <span class="required">*</span></label>
+                                <input type="text" class="prop-name" placeholder="Холодильник">
+                                <div class="error-message">Укажите наименование</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Количество <span class="required">*</span></label>
+                                <input type="number" class="prop-quantity" value="1" min="1">
+                                <div class="error-message">Укажите количество</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Состояние <span class="required">*</span></label>
+                                <input type="text" class="prop-condition" placeholder="исправен">
+                                <div class="error-message">Укажите состояние</div>
+                            </div>
+                            <button type="button" class="btn-remove" onclick="removeProperty(this)">✕</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add-property" onclick="addProperty()">➕ Добавить предмет</button>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-generate">📄 Сгенерировать договор</button>
+        </form>
+    </div>
+
+    <script>
+        // ============ TOAST УВЕДОМЛЕНИЯ ============
+        function showToast(message, type = 'error', duration = 5000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <span class="toast-close" onclick="this.parentElement.remove()">✕</span>
+                ${message}
+            `;
+            container.appendChild(toast);
+
+            if (duration > 0) {
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        toast.style.opacity = '0';
+                        toast.style.transform = 'translateX(100%)';
+                        setTimeout(() => toast.remove(), 300);
+                    }
+                }, duration);
+            }
+        }
+
+        // ============ ДАННЫЕ ============
+        let people = [];
+        let services = [];
+        let propertyCount = 1;
+
+        // ============ ИНИЦИАЛИЗАЦИЯ ============
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dateStartAgreement').value = today;
+
+            document.getElementById('isCanAnimals').addEventListener('change', function() {
+                document.getElementById('animalTypeGroup').style.display = this.checked ? 'block' : 'none';
+            });
+
+            document.getElementById('isHaveCom').addEventListener('change', function() {
+                document.getElementById('serviceComGroup').style.display = this.checked ? 'none' : 'block';
+            });
+
+            document.getElementById('contractForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                if (validateForm()) {
+                    await generateContract();
+                }
+            });
+
+            // Автоматическая валидация при вводе
+            document.querySelectorAll('input, select, textarea').forEach(el => {
+                el.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                el.addEventListener('input', function() {
+                    if (this.classList.contains('error')) {
+                        validateField(this);
+                    }
+                });
+            });
+        });
+
+        // ============ ВАЛИДАЦИЯ ============
+        function validateField(field) {
+            const group = field.closest('.form-group');
+            if (!group) return true;
+
+            const errorMsg = group.querySelector('.error-message');
+            const isRequired = field.hasAttribute('required');
+            const isValid = !isRequired || field.value.trim() !== '';
+
+            if (isRequired) {
+                if (!isValid) {
+                    field.classList.add('error');
+                    if (errorMsg) errorMsg.classList.add('active');
+                } else {
+                    field.classList.remove('error');
+                    if (errorMsg) errorMsg.classList.remove('active');
+                }
+            }
+
+            // Валидация числа
+            if (field.type === 'number' && field.value.trim() !== '') {
+                const num = parseFloat(field.value);
+                const min = parseFloat(field.getAttribute('min'));
+                if (!isNaN(min) && num < min) {
+                    field.classList.add('error');
+                    if (errorMsg) {
+                        errorMsg.textContent = `Значение должно быть не меньше ${min}`;
+                        errorMsg.classList.add('active');
+                    }
+                    return false;
+                }
+            }
+
+            return isValid;
+        }
+
+        function validatePropertyItem(item) {
+            let valid = true;
+            const name = item.querySelector('.prop-name');
+            const quantity = item.querySelector('.prop-quantity');
+            const condition = item.querySelector('.prop-condition');
+
+            if (!name.value.trim()) {
+                name.classList.add('error');
+                name.closest('.form-group').querySelector('.error-message').classList.add('active');
+                valid = false;
+            }
+            if (!quantity.value.trim() || parseInt(quantity.value) < 1) {
+                quantity.classList.add('error');
+                quantity.closest('.form-group').querySelector('.error-message').textContent = 'Укажите количество (не менее 1)';
+                quantity.closest('.form-group').querySelector('.error-message').classList.add('active');
+                valid = false;
+            }
+            if (!condition.value.trim()) {
+                condition.classList.add('error');
+                condition.closest('.form-group').querySelector('.error-message').classList.add('active');
+                valid = false;
+            }
+            return valid;
+        }
+
+        function validateForm() {
+            let hasErrors = false;
+            let firstError = null;
+            let errorMessages = [];
+
+            // Валидация всех обязательных полей
+            const requiredFields = document.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                const group = field.closest('.form-group');
+                if (!validateField(field)) {
+                    hasErrors = true;
+                    if (!firstError) firstError = field;
+                    const label = group ? group.querySelector('label')?.textContent?.replace('*', '').trim() || 'Поле' : 'Поле';
+                    errorMessages.push(`${label} обязательно для заполнения`);
+                }
+            });
+
+            // Валидация имущества
+            document.querySelectorAll('.property-item').forEach(item => {
+                if (!validatePropertyItem(item)) {
+                    hasErrors = true;
+                    if (!firstError) firstError = item.querySelector('.prop-name');
+                    errorMessages.push('Заполните все поля в описи имущества');
+                }
+            });
+
+            // Валидация животных
+            if (document.getElementById('isCanAnimals').checked) {
+                const animalType = document.getElementById('typeAnimal');
+                if (!animalType.value.trim()) {
+                    animalType.classList.add('error');
+                    animalType.closest('.form-group').querySelector('.error-message').classList.add('active');
+                    hasErrors = true;
+                    if (!firstError) firstError = animalType;
+                    errorMessages.push('Укажите тип животного');
+                }
+            }
+
+            // Подсвечиваем секции с ошибками
+            document.querySelectorAll('.section').forEach(section => {
+                const hasError = section.querySelectorAll('.form-group .error').length > 0 ||
+                                 section.querySelectorAll('.property-item .error').length > 0;
+                section.classList.toggle('error', hasError);
+            });
+
+            // Обновляем бейдж с ошибками
+            updateErrorBadge();
+
+            if (hasErrors) {
+                // Показываем первое сообщение в toast
+                if (errorMessages.length > 0) {
+                    const uniqueMessages = [...new Set(errorMessages)];
+                    showToast(`⚠️ ${uniqueMessages[0]}${uniqueMessages.length > 1 ? ` и ещё ${uniqueMessages.length - 1} ошибок` : ''}`, 'error');
+                }
+
+                // Скроллим к первой ошибке
+                if (firstError) {
+                    firstError.focus();
+                    firstError.closest('.section')?.classList.add('scroll-to-error');
+                    setTimeout(() => {
+                        firstError.closest('.section')?.classList.remove('scroll-to-error');
+                    }, 500);
+                }
+                return false;
+            }
+
+            return true;
+        }
+
+        function updateErrorBadge() {
+            const allErrors = document.querySelectorAll('.form-group .error');
+            const propertyErrors = document.querySelectorAll('.property-item .error');
+            const totalErrors = allErrors.length + propertyErrors.length;
+
+            const badge = document.getElementById('errorBadge');
+            const count = document.getElementById('errorCount');
+
+            if (totalErrors > 0) {
+                count.textContent = totalErrors;
+                badge.classList.add('active');
+            } else {
+                badge.classList.remove('active');
+            }
+        }
+
+        function scrollToFirstError() {
+            const firstError = document.querySelector('.form-group .error, .property-item .error');
+            if (firstError) {
+                firstError.focus();
+                const section = firstError.closest('.section');
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    section.classList.add('scroll-to-error');
+                    setTimeout(() => section.classList.remove('scroll-to-error'), 500);
+                }
+            }
+        }
+
+        // ============ ДОБАВЛЕНИЕ ЛЮДЕЙ ============
+        function addPeople() {
+            const input = document.getElementById('peopleInput');
+            const value = input.value.trim();
+            if (!value) {
+                showToast('Введите ФИО жильца', 'warning');
+                return;
+            }
+            people.push(value);
+            input.value = '';
+            renderPeople();
+        }
+
+        function removePeople(index) {
+            people.splice(index, 1);
+            renderPeople();
+        }
+
+        function renderPeople() {
+            const container = document.getElementById('peopleList');
+            container.innerHTML = people.map((p, i) =>
+                `<span class="tag">${p} <span class="remove" onclick="removePeople(${i})">×</span></span>`
+            ).join('');
+        }
+
+        // ============ ДОБАВЛЕНИЕ УСЛУГ ============
+        function addService() {
+            const input = document.getElementById('serviceInput');
+            const value = input.value.trim();
+            if (!value) {
+                showToast('Введите название услуги', 'warning');
+                return;
+            }
+            services.push(value);
+            input.value = '';
+            renderServices();
+        }
+
+        function removeService(index) {
+            services.splice(index, 1);
+            renderServices();
+        }
+
+        function renderServices() {
+            const container = document.getElementById('serviceList');
+            container.innerHTML = services.map((s, i) =>
+                `<span class="tag">${s} <span class="remove" onclick="removeService(${i})">×</span></span>`
+            ).join('');
+        }
+
+        // ============ ДОБАВЛЕНИЕ ИМУЩЕСТВА ============
+        function addProperty() {
+            const container = document.getElementById('propertiesContainer');
+            const index = propertyCount++;
+            const div = document.createElement('div');
+            div.className = 'property-item';
+            div.dataset.index = index;
+            div.innerHTML = `
+                <div class="form-group">
+                    <label>Наименование <span class="required">*</span></label>
+                    <input type="text" class="prop-name" placeholder="Холодильник">
+                    <div class="error-message">Укажите наименование</div>
+                </div>
+                <div class="form-group">
+                    <label>Количество <span class="required">*</span></label>
+                    <input type="number" class="prop-quantity" value="1" min="1">
+                    <div class="error-message">Укажите количество</div>
+                </div>
+                <div class="form-group">
+                    <label>Состояние <span class="required">*</span></label>
+                    <input type="text" class="prop-condition" placeholder="исправен">
+                    <div class="error-message">Укажите состояние</div>
+                </div>
+                <button type="button" class="btn-remove" onclick="removeProperty(this)">✕</button>
+            `;
+            container.appendChild(div);
+
+            // Добавляем валидацию для новых полей
+            div.querySelectorAll('.prop-name, .prop-quantity, .prop-condition').forEach(el => {
+                el.addEventListener('blur', function() {
+                    const item = this.closest('.property-item');
+                    validatePropertyItem(item);
+                });
+                el.addEventListener('input', function() {
+                    if (this.classList.contains('error')) {
+                        const item = this.closest('.property-item');
+                        validatePropertyItem(item);
+                    }
+                });
+            });
+        }
+
+        function removeProperty(btn) {
+            const items = document.querySelectorAll('.property-item');
+            if (items.length <= 1) {
+                showToast('Должен быть хотя бы один предмет в описи', 'warning');
+                return;
+            }
+            btn.closest('.property-item').remove();
+            updateErrorBadge();
+        }
+
+        // ============ СБОР ДАННЫХ ============
+        function getFormData() {
+            const getValue = (id) => document.getElementById(id).value.trim();
+            const getInt = (id) => parseInt(document.getElementById(id).value) || 0;
+            const getBool = (id) => document.getElementById(id).checked;
+
+            const properties = [];
+            document.querySelectorAll('.property-item').forEach(el => {
+                const name = el.querySelector('.prop-name').value.trim();
+                const quantity = parseInt(el.querySelector('.prop-quantity').value) || 0;
+                const condition = el.querySelector('.prop-condition').value.trim();
+                if (name) {
+                    properties.push({ name, quantity, condition });
+                }
+            });
+
+            return {
+                fullNameLandlord: getValue('fullNameLandlord'),
+                passportDataLandlord: getValue('passportDataLandlord'),
+                issuedLandlord: getValue('issuedLandlord'),
+                addressRegLandlord: getValue('addressRegLandlord'),
+                fullNameTenant: getValue('fullNameTenant'),
+                passportDataTenant: getValue('passportDataTenant'),
+                issuedTenant: getValue('issuedTenant'),
+                addressRegTenant: getValue('addressRegTenant'),
+                apartamentAddress: getValue('apartamentAddress'),
+                apartamentSquare: getValue('apartamentSquare'),
+                ownershipDocument: getValue('ownershipDocument'),
+                peoplesLives: people.map(p => ({ fullName: p })),
+                quantityChildren: getInt('quantityChildren'),
+                typeAnimal: getValue('typeAnimal'),
+                isCanAnimals: getBool('isCanAnimals'),
+                quantityMonthAgreement: getInt('quantityMonthAgreement'),
+                dateStartAgreement: getValue('dateStartAgreement'),
+                quantityMonthBeforeOffer: getInt('quantityMonthBeforeOffer'),
+                quantityDayWarningCancel: getInt('quantityDayWarningCancel'),
+                compensation: getInt('compensation'),
+                paymentMonth: getInt('paymentMonth'),
+                isHaveCom: getBool('isHaveCom'),
+                serviceCom: [...services],
+                repairDay: getInt('repairDay'),
+                checkDay: getInt('checkDay'),
+                keyCount: getInt('keyCount'),
+                electricityMeter: getValue('electricityMeter'),
+                waterMeter: getValue('waterMeter'),
+                properties: properties
+            };
+        }
+
+        // ============ ГЕНЕРАЦИЯ PDF ============
+        async function generateContract() {
+            const loadingDiv = document.getElementById('loading');
+            const submitBtn = document.querySelector('.btn-generate');
+
+            const data = getFormData();
+
+            loadingDiv.classList.add('active');
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/contract/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.message || 'Ошибка генерации');
+                }
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `Договор_аренды_${new Date().toISOString().split('T')[0]}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+
+                showToast('✅ Договор успешно сгенерирован!', 'success', 4000);
+
+            } catch (error) {
+                showToast('❌ Ошибка: ' + error.message, 'error');
+            } finally {
+                loadingDiv.classList.remove('active');
+                submitBtn.disabled = false;
+            }
+        }
+
+        // ============ ОБРАБОТКА ENTER ============
+        document.getElementById('peopleInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addPeople();
+            }
+        });
+
+        document.getElementById('serviceInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addService();
+            }
+        });
+    </script>
+
+</body>
+</html>
