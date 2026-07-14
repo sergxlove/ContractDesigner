@@ -111,7 +111,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("2.1 В соответствии с условиями настоящего Договора Арендодатель предоставляет, " +
+                text.Span("2.1 ").Bold();
+                text.Span("В соответствии с условиями настоящего Договора Арендодатель предоставляет, " +
                     "а Арендатор принимает за плату во временное пользование для проживания объект " +
                     $"по адресу: ");
                 text.Span($" {options.ApartamentAddress} ").Underline();
@@ -126,7 +127,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("2.2 Арендодатель предоставляет в пользование Жилое помещение без права его передачи" +
+                text.Span("2.2 ").Bold();
+                text.Span("Арендодатель предоставляет в пользование Жилое помещение без права его передачи" +
                     " в субаренду/поднаем и свободным от претензий третьих лиц, которые могут воспрепятствовать" +
                     " пользованию Жилым помещением. Если на момент сдачи Жилого помещения имеются другие" +
                     " собственники квартиры, то Арендодатель получил от них согласие на сдачу этого Жилого" +
@@ -137,7 +139,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("2.3 Лица, которые могут проживать в Жилом помещении с арендатором (ФИО," +
+                text.Span("2.3 ").Bold();
+                text.Span("Лица, которые могут проживать в Жилом помещении с арендатором (ФИО," +
                     " серия и номер паспорта каждого человека):    ");
                 if (options.PeoplesLives.Count == 0)
                     text.Span("отсутствуют").Underline();
@@ -159,7 +162,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("2.4 Проживание в Жилом помещении иных лиц, осуществляется только на основании " +
+                text.Span("2.4 ").Bold();
+                text.Span("Проживание в Жилом помещении иных лиц, осуществляется только на основании " +
                     "письменного соглашения Арендодателя.");
                 text.EmptyLine();
             });
@@ -167,7 +171,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("2.5 Нахождение в жилом помещении животных ");
+                text.Span("2.5 ").Bold();
+                text.Span("Нахождение в жилом помещении животных ");
                 if(options.IsCanAnimals)
                 {
                     text.Span("запрещено /");
@@ -193,7 +198,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("3.1 Срок действия договора: ");
+                text.Span("3.1 ").Bold();
+                text.Span("Срок действия договора: ");
                 text.Span($"  {options.QuantityMonthAgreement}  ").Underline(); 
                 text.Span(" месяцев начиная с «");
                 text.Span($"{options.DateStartAgreement.DayNumber}").Underline(); 
@@ -210,7 +216,8 @@ namespace ContractDesigner.Core.Services
             {
                 text.Justify();
                 text.EmptyLine();
-                text.Span("3.2 Жилое помещение считается переданным Арендодателем Арендатору в день " +
+                text.Span("3.2 ").Bold();
+                text.Span("Жилое помещение считается переданным Арендодателем Арендатору в день " +
                     "подписания Акта передачи Жилого помещения (Приложение №1).");
                 text.EmptyLine();
             });
@@ -218,7 +225,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("3.3 Вместе с Жилым помещением Арендатору передается Имущество в соответствии с" +
+                text.Span("3.3 ").Bold();
+                text.Span("Вместе с Жилым помещением Арендатору передается Имущество в соответствии с" +
                     " описью в Приложении №1.");
                 text.EmptyLine();
             });
@@ -226,7 +234,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("3.4 Не позднее чем за ");
+                text.Span("3.4 ").Bold();
+                text.Span("Не позднее чем за ");
                 text.Span($" {options.QuantityMonthBeforeOffer} ").Underline(); 
                 text.Span(" месяц(а) до истечения срока Договора Арендодатель должен предложить" +
                     " Арендатору заключить договор на тех же или иных условиях либо предупредить" +
@@ -239,7 +248,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("3.5. Стороны вправе расторгнуть договор по взаимному согласию, " +
+                text.Span("3.5 ").Bold();
+                text.Span("Стороны вправе расторгнуть договор по взаимному согласию, " +
                     "а также по инициативе любой из Сторон с предупреждением другой Стороны за ");
                 text.Span($"  {options.QuantityDayWarningCancel}  ").Underline();
                 text.Span(" дней до момента расторжения Договора.");
@@ -249,7 +259,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("3.6 В случае не продления или досрочного прекращения Договора Арендатор " +
+                text.Span("3.6 ").Bold();
+                text.Span("В случае не продления или досрочного прекращения Договора Арендатор " +
                     "обязуется освободить Жилое помещение и передать его Арендодателю по Акту возврату" +
                     " Жилого помещения (Приложение № 2 к Договору) не позднее дня не продления или " +
                     "досрочного прекращения Договора.");
@@ -259,7 +270,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("3.7 В случае нарушения сроков освобождения и возврата Арендодателю в" +
+                text.Span("3.7 ").Bold();
+                text.Span("В случае нарушения сроков освобождения и возврата Арендодателю в" +
                     " пользование Жилого помещения, установленных этим Договором, Арендатор уплачивает" +
                     " Арендодателю неустойку в размере ");
                 text.Span($" {options.Compensation} ").Underline(); 
@@ -278,7 +290,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("4.1 Размер платы за жилое помещение устанавливается в размере ");
+                text.Span("4.1 ").Bold();
+                text.Span("Размер платы за жилое помещение устанавливается в размере ");
                 text.Span($"{options.PaymentMonth}").Underline();
                 text.Span(" рублей в месяц.");
                 text.EmptyLine();
@@ -287,7 +300,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("4.2 Плата за жилое помещение выплачивается авансом ежемесячно до числа месяца, " +
+                text.Span("4.2 ").Bold();
+                text.Span("Плата за жилое помещение выплачивается авансом ежемесячно до числа месяца, " +
                     "соответствующего дате вселения. Если в месяц платежа такое число отсутствует, то " +
                     "оплата производится до последнего числа этого месяца");
                 text.EmptyLine();
@@ -297,7 +311,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("4.3 Стоимость комунальных услуг в стоимость платы за жилое помещение  ");
+                text.Span("4.3 ").Bold();
+                text.Span("Стоимость комунальных услуг в стоимость платы за жилое помещение  ");
                 if (options.IsHaveCom)
                 {
                     text.Span("входит").Underline();
@@ -315,7 +330,8 @@ namespace ContractDesigner.Core.Services
             {
                 column.Item().Text(text => 
                 {
-                    text.Span($"4.{currrentItem} В стоимость комунальных услуг, которые Арендатор оплачивает" +
+                    text.Span($"4.{currrentItem} ").Bold();
+                    text.Span("В стоимость комунальных услуг, которые Арендатор оплачивает" +
                         $" ежемесячно за свой счет, входят: ");
                     StringBuilder sb = new();
                     foreach(string s in options.ServiceCom)
@@ -332,7 +348,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span($"4.{currrentItem} Арендатор обязан самостоятельно принять меры для уведомления " +
+                text.Span($"4.{currrentItem} ").Bold();
+                text.Span("Арендатор обязан самостоятельно принять меры для уведомления " +
                     $"Арендодателя о показанях счетчиков, сумме коммунальных платежей к оплате.");
                 text.EmptyLine();
             });
@@ -341,7 +358,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span($"4.{currrentItem} Стороны самостоятельно договариваются о способе оплаты за " +
+                text.Span($"4.{currrentItem} ").Bold();
+                text.Span($"Стороны самостоятельно договариваются о способе оплаты за " +
                     $"Жилое помещение и комунальных услуг");
                 text.EmptyLine();
             });
@@ -354,7 +372,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("5.1 На момент подписания Договора в качестве обеспечительного платежа внессена сумма" +
+                text.Span("5.1 ").Bold();
+                text.Span("На момент подписания Договора в качестве обеспечительного платежа внессена сумма" +
                     " в размере ");
                 text.Span($"{options.PaymentZl}").Underline();
                 text.Span(" рублей");
@@ -363,14 +382,16 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("5.2 В случае причинения вреда имуществу Арендодателя по вине Арендатора Арендодатель" +
+                text.Span("5.2 ").Bold();
+                text.Span("В случае причинения вреда имуществу Арендодателя по вине Арендатора Арендодатель" +
                     " вправе удержать сумму ущерба из обеспечительного платежа, о чем должен уведомить Арендодатора.");
                 text.EmptyLine();
             });
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("5.3 Арендатор обязан незамедлительно сообщеить Арендодателю об ущербе имуществу, " +
+                text.Span("5.3 ").Bold();
+                text.Span("Арендатор обязан незамедлительно сообщеить Арендодателю об ущербе имуществу, " +
                     "а также компенсировать ему ущерб, который отдельно или в совокупности с другими фактами" +
                     " нанесения ущерба имуществу составляет больше, чем обеспечительный платеж (п. 5.1 " +
                     "настоящего договора).");
@@ -379,7 +400,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("5.4 Арендодатель обязуется вернуть сумму обеспечительного платежа по истечении " +
+                text.Span("5.4 ").Bold();
+                text.Span("Арендодатель обязуется вернуть сумму обеспечительного платежа по истечении " +
                     "срока найма при исполнении Арендатором своих обязательств по Договору, в том числе " +
                     "сохранности имущества Арендодателя. Обеспечительный платеж не засчитывается в счет " +
                     "арендной платы за последний месяци возвращается после полной оплаты всех месяцев.");
@@ -390,20 +412,30 @@ namespace ContractDesigner.Core.Services
         private void GenerateItem6(ColumnDescriptor column, RentalApartamentAgreementOptions options)
         {
             column.Item().PaddingVertical(10).Text("6. Права и обязанности сторон").FontSize(14).Bold();
-            column.Item().PaddingVertical(2).Text("6.1 Арендодатель обязуется:");
+            column.Item().PaddingVertical(2).Text(text => 
+            {
+                text.Span("6.1 ").Bold();
+                text.Span("Арендодатель обязуется:");
+            });
 
             column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
             {
+                text.Justify();
                 text.Span("• Предоставить Арендатору Жилое помещение в состоянии, пригодном для проживания." +
                     " Обеспечить беспрепятственное пользование Жилым помещением на условиях договора.\n");
                 text.Span("• Письменно уведомить Арендатора о правах третьих лиц на передаваемое в наем" +
                     " (аренду) Жилое помещение в случае возникновения таких прав\n.");
 
             });
-            column.Item().PaddingVertical(2).Text("6.2 Арендатор обязуется:");
+            column.Item().PaddingVertical(2).Text(text =>
+            {
+                text.Span("6.2 ").Bold();
+                text.Span("Арендатор обязуется:");
+            });
 
             column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
             {
+                text.Justify();
                 text.Span("• Использовать Жилое помещение исключительно в целях проживания и не сдавать " +
                     "помещение в субаренду/поднаем без согласия Арендодателя.\n");
                 text.Span("• Использовать Жилое помещение только для проживания лиц, указанных в Договоре.\n");
@@ -427,10 +459,15 @@ namespace ContractDesigner.Core.Services
 
             });
 
-            column.Item().PaddingVertical(2).Text("6.3 Арендодатель вправе:");
+            column.Item().PaddingVertical(2).Text(text =>
+            {
+                text.Span("6.3 ").Bold();
+                text.Span("Арендодатель вправе:");
+            });
 
             column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
             {
+                text.Justify();
                 text.Span("• В присутствии Арендатора осуществлять проверку сохранности, состояния Жилого " +
                     "помещения. Наймодатель должен заранее (за срок указанный в п. 6.2) предупредить " +
                     "Арендатора о намерении осуществить проверку Жилого помещения.\n");
@@ -440,10 +477,15 @@ namespace ContractDesigner.Core.Services
                     "основании и в соответствии с пунктов 3.6 Настоящего Договора.\n");
             });
 
-            column.Item().PaddingVertical(2).Text("6.4 Арендатор вправе:");
+            column.Item().PaddingVertical(2).Text(text =>
+            {
+                text.Span("6.4 ").Bold();
+                text.Span("Арендатор вправе:");
+            });
 
             column.Item().PaddingLeft(15).PaddingVertical(1).Text(text =>
             {
+                text.Justify();
                 text.Span("• Производить переустройство, перепланировку, реконструкцию и переоборудование " +
                     "или улучшение Жилого помещения только с письменного согласия Арендодателя.\n");
                 text.Span("• Требовать устранения неисправностей, если они возникли не по вине Арендатора;\n");
@@ -461,13 +503,16 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("7.1 За неисполнение условий настоящего Договора стороны несут ответственность " +
+                text.Span("7.1 ").Bold();
+                text.Span("За неисполнение условий настоящего Договора стороны несут ответственность " +
                     "в соответствии с действующим законодательством РФ и условиями настоящего Договора.");
                 text.EmptyLine();
-                text.Span("7.2 В случае неисполнения или ненадлежащего исполнения своих обязательств " +
+                text.Span("7.2 ").Bold();
+                text.Span("В случае неисполнения или ненадлежащего исполнения своих обязательств " +
                     "по настоящему Договору каждая сторона обязана возместить другой стороне причиненные убытки");
                 text.EmptyLine();
-                text.Span("7.3 В случае если в связи с действиями Арендатора органы власти или иные третьи " +
+                text.Span("7.3").Bold();
+                text.Span("В случае если в связи с действиями Арендатора органы власти или иные третьи " +
                     "лица предъявят Арендодателю претензии/исковыые требования, либо в отношении Арендодателя " +
                     "будут наложены штрафные санкции Арендатор обязан: исправить допущенные нарушения, " +
                     "содействовать в урегулировании отношений с соответствующими органами/третьими лицами и " +
@@ -483,7 +528,8 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("8.1 Все споры и разногласия, возникающие в связи с настоящим договором, стороны " +
+                text.Span("8.1").Bold();
+                text.Span("Все споры и разногласия, возникающие в связи с настоящим договором, стороны " +
                     "обязуются урегулировать путем переговоров. В случае невозможности достижения согласия " +
                     "путем переговоров, спор передается на рассмотрение в судебном порядке в соответствии " +
                     "с законодательством РФ");
@@ -498,11 +544,13 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("9.1 Настоящий договор гражданским законодательством Российской федерации и " +
+                text.Span("9.1 ").Bold();
+                text.Span("Настоящий договор гражданским законодательством Российской федерации и " +
                     "толкуется в соответствии с ним. Во всем, что не урегулировано настоящим Договором, " +
                     "стороны руководствуются законодательством Российской Федерации.");
                 text.EmptyLine();
-                text.Span("9.2 Стороны также оговаривают, что принимают Жилое помещение в соответствии с актом " +
+                text.Span("9.2 ").Bold();
+                text.Span("Стороны также оговаривают, что принимают Жилое помещение в соответствии с актом " +
                     "(Приложение 1), являющимся неотъемлимой частью настоящего договора. Стороны принимают " +
                     "к сведению показания счетчиков и размер задолженности за коммунальные услуги или иные " +
                     "задолженности, связанные с использованием Жилого помещения. ");
@@ -517,11 +565,13 @@ namespace ContractDesigner.Core.Services
             column.Item().Text(text =>
             {
                 text.Justify();
-                text.Span("10.1 Документ составлен в ");
+                text.Span("10.1 ").Bold();
+                text.Span("Документ составлен в ");
                 text.Span($"   {options.CountExample}   ").Underline();
                 text.Span("экземплярах. Все экземпляры имеют равную юридическую силу.");
                 text.EmptyLine();
-                text.Span("10.2 Договор вступает в силу с момента подписания сторонами");
+                text.Span("10.2 ").Bold();
+                text.Span("Договор вступает в силу с момента подписания сторонами");
                 text.EmptyLine();
             });
         }
@@ -588,13 +638,13 @@ namespace ContractDesigner.Core.Services
         {
             column.Item().Text(text =>
             {
-                text.Span("Приложение № 1 к Договору найма (аренды) от «");
-                text.Span($"{options.DateStartAgreement.Day}").Underline();
-                text.Span("» ");
-                text.Span($"{options.DateStartAgreement.Month}").Underline();
-                text.Span(" 20");
-                text.Span($"{options.DateStartAgreement.Year}").Underline();
-                text.Span("г.");
+                text.Span("Приложение № 1 к Договору найма (аренды) от «").Bold();
+                text.Span($"{options.DateStartAgreement.Day}").Underline().Bold();
+                text.Span("» ").Bold();
+                text.Span($"{options.DateStartAgreement.Month}").Underline().Bold();
+                text.Span(" 20").Bold();
+                text.Span($"{options.DateStartAgreement.Year}").Underline().Bold();
+                text.Span("г.").Bold();
             });
 
             column.Item().PaddingTop(10).Text(text =>
@@ -616,7 +666,7 @@ namespace ContractDesigner.Core.Services
                 text.Span($"{options.FullNameLandlord}").Underline();
                 text.Span(",");
                 text.EmptyLine();
-                text.Span("    паспорт ");
+                text.Span("паспорт ");
                 text.Span($"{options.PassportDataLandlord}").Underline();
                 text.Span(", зарегистрирован по адресу:");
                 text.EmptyLine();
@@ -624,7 +674,7 @@ namespace ContractDesigner.Core.Services
                 text.Span($"{options.AddressRegLandlord}").Underline();
                 text.Span(",");
                 text.EmptyLine();
-                text.Span("    в дальнейшем именуемый «Арендодатель»,");
+                text.Span("в дальнейшем именуемый «Арендодатель»,");
             });
 
             column.Item().PaddingTop(5).Text(text =>
@@ -637,7 +687,7 @@ namespace ContractDesigner.Core.Services
                 text.Span($"{options.FullNameTenant}").Underline();
                 text.Span(",");
                 text.EmptyLine();
-                text.Span("    паспорт ");
+                text.Span("паспорт ");
                 text.Span($"{options.PassportDataTenant}").Underline();
                 text.Span(", зарегистрирован по адресу:");
                 text.EmptyLine();
@@ -645,7 +695,7 @@ namespace ContractDesigner.Core.Services
                 text.Span($"{options.AddressRegTenant}").Underline();
                 text.Span(",");
                 text.EmptyLine();
-                text.Span("    в дальнейшем именуемый «Арендатор»,");
+                text.Span("в дальнейшем именуемый «Арендатор»,");
             });
 
             column.Item().PaddingTop(5).Text("заключили настоящий Акт о нижеследующем:");
@@ -653,7 +703,8 @@ namespace ContractDesigner.Core.Services
             column.Item().PaddingTop(5).Text(text =>
             {
                 text.Justify();
-                text.Span("1. В соответствии с Договором найма (аренды) Жилого помещения Арендодатель передал, ");
+                text.Span("1. ").Bold();
+                text.Span("В соответствии с Договором найма (аренды) Жилого помещения Арендодатель передал, ");
                 text.Span("а Арендатор принял жилое помещение в соответствии с Договором в виде квартиры, ");
                 text.Span($"расположенной по адресу: {options.ApartamentAddress} ");
                 text.Span("(далее «Жилое помещение»).");
@@ -662,7 +713,8 @@ namespace ContractDesigner.Core.Services
             column.Item().PaddingTop(5).Text(text =>
             {
                 text.Justify();
-                text.Span("2. Настоящим Арендатор удостоверяет, что получил комплект ключей от Жилого помещения ");
+                text.Span("2. ").Bold();
+                text.Span("Настоящим Арендатор удостоверяет, что получил комплект ключей от Жилого помещения ");
                 text.Span("и подъезда в количестве ");
                 text.Span($"{options.KeyCount}").Underline();
                 text.Span(" экземпляров.");
@@ -671,14 +723,16 @@ namespace ContractDesigner.Core.Services
             column.Item().PaddingTop(5).Text(text =>
             {
                 text.Justify();
-                text.Span("3. Жилое помещение, переданное по данному акту Арендатору, находится в состоянии пригодном ");
+                text.Span("3. ").Bold();
+                text.Span("Жилое помещение, переданное по данному акту Арендатору, находится в состоянии пригодном ");
                 text.Span("для проживания, а также соответствует санитарным, техническим и противопожарным требованиям ");
                 text.Span("действующего законодательства.");
             });
 
             column.Item().PaddingTop(5).Text(text =>
             {
-                text.Span("4. По договоренности Арендодателя и Арендатора Жилое помещение передается вместе с имуществом, ");
+                text.Span("4. ").Bold();
+                text.Span("По договоренности Арендодателя и Арендатора Жилое помещение передается вместе с имуществом, ");
                 text.Span("то есть мебелью и бытовой техникой согласно приведенному перечню:");
             });
 
@@ -791,27 +845,31 @@ namespace ContractDesigner.Core.Services
 
             column.Item().PaddingTop(10).Text(text =>
             {
-                text.Span("5. Показание электросчетчика на день подписания настоящего Передаточного Акта составляют: ");
+                text.Span("5. ").Bold();
+                text.Span("Показание электросчетчика на день подписания настоящего Передаточного Акта составляют: ");
                 text.Span($"{options.ElectricityMeter}").Underline();
                 text.Span(" кВт/ч.");
             });
 
             column.Item().PaddingTop(5).Text(text =>
             {
-                text.Span("6. Показания водосчетчиков на день подписания настоящего Передаточного Акта составляют:");
+                text.Span("6. ").Bold();
+                text.Span("Показания водосчетчиков на день подписания настоящего Передаточного Акта составляют:");
                 text.EmptyLine();
                 text.Span($"{options.WaterMeter}").Underline();
             });
 
             column.Item().PaddingTop(5).Text(text =>
             {
-                text.Span("7. Арендатор удовлетворен состоянием Жилого помещения и считает его пригодным для ");
+                text.Span("7. ").Bold();
+                text.Span("Арендатор удовлетворен состоянием Жилого помещения и считает его пригодным для ");
                 text.Span("использования в целях и на условиях, установленных настоящим Договором.");
             });
 
             column.Item().PaddingTop(15).Text(text =>
             {
-                text.Span("8. Данный акт передачи жилого помещения в найм (аренду) является неотъемлемой частью ");
+                text.Span("8. ").Bold();
+                text.Span("Данный акт передачи жилого помещения в найм (аренду) является неотъемлемой частью ");
                 text.Span("Договора, и заключен в ");
                 text.Span($"{options.CountExample}").Underline();
                 text.Span(" экземплярах для каждой из сторон.");
@@ -831,13 +889,13 @@ namespace ContractDesigner.Core.Services
                 {
                     text.Span("Контактный телефон:");
                     text.EmptyLine();
-                    text.Span("____________________").Underline();
+                    text.Span("____________________");
                 });
                 table.Cell().Text(text =>
                 {
                     text.Span("Контактный телефон:");
                     text.EmptyLine();
-                    text.Span("____________________").Underline();
+                    text.Span("____________________");
                 });
 
                 table.Cell().PaddingTop(5).Text("");
@@ -860,7 +918,7 @@ namespace ContractDesigner.Core.Services
                     text.Span("________________");
                     text.EmptyLine();
                     text.Span($"{options.FullNameTenant} / ");
-                    text.Span("__________").Underline();
+                    text.Span("__________");
                     text.EmptyLine();
                     text.Span("(фамилия и инициалы)");
                     text.EmptyLine();
@@ -875,13 +933,13 @@ namespace ContractDesigner.Core.Services
         {
             column.Item().Text(text =>
             {
-                text.Span("Приложение № 2 к Договору найма от «");
-                text.Span($"{options.DateStartAgreement.Day}").Underline();
-                text.Span("» ");
-                text.Span($"{options.DateStartAgreement.Month}").Underline();
-                text.Span(" 20");
-                text.Span($"{options.DateStartAgreement.Year}").Underline();
-                text.Span("г.");
+                text.Span("Приложение № 2 к Договору найма от «").Bold();
+                text.Span($"{options.DateStartAgreement.Day}").Underline().Bold();
+                text.Span("» ").Bold();
+                text.Span($"{options.DateStartAgreement.Month}").Underline().Bold();
+                text.Span(" 20").Bold();
+                text.Span($"{options.DateStartAgreement.Year}").Underline().Bold();
+                text.Span("г.").Bold();
             });
 
             column.Item().PaddingTop(10).Text(text =>
@@ -935,7 +993,8 @@ namespace ContractDesigner.Core.Services
 
             column.Item().PaddingLeft(15).PaddingTop(5).Text(text =>
             {
-                text.Span("1. В соответствии с Договором найма (аренды) Жилого помещения Арендодатель ранее передал, ");
+                text.Span("1. ").Bold();
+                text.Span("В соответствии с Договором найма (аренды) Жилого помещения Арендодатель ранее передал, ");
                 text.Span("а Арендатор принял жилое помещение в виде квартиры, расположенной по адресу: ");
                 text.Span($"{options.ApartamentAddress}").Underline();
                 text.Span(" (далее «Жилое помещение»).");
@@ -943,7 +1002,8 @@ namespace ContractDesigner.Core.Services
 
             column.Item().PaddingLeft(15).PaddingTop(5).Text(text =>
             {
-                text.Span("2. Стороны имеют намерение зафиксировать фактический возврат Жилого помещения из найма ");
+                text.Span("2. ").Bold();
+                text.Span("Стороны имеют намерение зафиксировать фактический возврат Жилого помещения из найма ");
                 text.Span("(аренды) Арендодателю,");
             });
 
@@ -954,7 +1014,8 @@ namespace ContractDesigner.Core.Services
 
             column.Item().PaddingTop(5).Text(text =>
             {
-                text.Span("1. Настоящим Арендодатель удостоверяет, что получил необходимый комплект ключей ");
+                text.Span("1. ").Bold();
+                text.Span("Настоящим Арендодатель удостоверяет, что получил необходимый комплект ключей ");
                 text.Span("от Жилого помещения в количестве ");
                 text.Span($"{options.KeyCount}").Underline();
                 text.Span(" экземпляров.");
@@ -962,14 +1023,16 @@ namespace ContractDesigner.Core.Services
 
             column.Item().PaddingTop(5).Text(text =>
             {
-                text.Span("2. Жилое помещение, передаваемое по акту возврата жилого помещения, находится в состоянии ");
+                text.Span("2. ").Bold();
+                text.Span("Жилое помещение, передаваемое по акту возврата жилого помещения, находится в состоянии ");
                 text.Span("пригодном для проживания, а также соответствует санитарным, техническим и ");
                 text.Span("противопожарным требованиям.");
             });
 
             column.Item().PaddingTop(10).Text(text =>
             {
-                text.Span("3. Настоящим стороны удостоверяют, что не имеют претензий друг к другу в связи с:");
+                text.Span("3. ").Bold();
+                text.Span("Настоящим стороны удостоверяют, что не имеют претензий друг к другу в связи с:");
                 text.EmptyLine();
                 text.Span("    • состоянием возвращаемого Жилого помещения");
                 text.EmptyLine();
@@ -982,21 +1045,23 @@ namespace ContractDesigner.Core.Services
 
             column.Item().PaddingTop(5).Text(text =>
             {
-                text.Span("4. Претензии Арендодателя к состоянию Жилого помещения (прописать если есть или прочерк, ");
+                text.Span("4. ").Bold();
+                text.Span("Претензии Арендодателя к состоянию Жилого помещения (прописать если есть или прочерк, ");
                 text.Span("если отсутствуют):");
                 text.EmptyLine();
                 text.Span("    ");
-                text.Span("_________________________________________________________________").Underline();
+                text.Span("_________________________________________________________________");
                 text.EmptyLine();
                 text.Span("    ");
-                text.Span("_________________________________________________________________").Underline();
+                text.Span("_________________________________________________________________");
             });
 
             column.Item().PaddingTop(10).Text(text =>
             {
+                text.Span("5. ").Bold();
                 text.Span("5. Данный акт возврата жилого помещения из найма (аренды) является неотъемлемой частью ");
                 text.Span("Договора, и заключен в ");
-                text.Span("2").Underline();
+                text.Span($"{options.CountExample}").Underline();
                 text.Span(" экземплярах для каждой из сторон.");
             });
         }
